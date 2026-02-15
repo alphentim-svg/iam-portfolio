@@ -1,5 +1,3 @@
-md
-
 **Doel**
 
 Basisbegrippen uit offensive en defensive security begrijpen, en ze kunnen vertalen naar praktische stappen in een organisatie.
