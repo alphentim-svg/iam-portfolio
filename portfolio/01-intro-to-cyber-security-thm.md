@@ -1,3 +1,8 @@
+## TL;DR
+- Cybersecurity = misbruik voorkomen, detecteren en oplossen.
+- Offensive = denken als aanvaller om zwaktes te vinden; Defensive = beschermen en snel reageren.
+- Deze entry bundelt Module 1 (Defensive + Offensive + Careers) en vertaalt dit naar praktische stappen.
+
 **Doel**
 
 Basisbegrippen uit offensive en defensive security begrijpen, en ze kunnen vertalen naar praktische stappen in een organisatie.
@@ -29,3 +34,20 @@ Cybersecurity gaat over het voorkomen, ontdekken en oplossen van misbruik van sy
 **Mini-voorbeeld**
 
 Een medewerker krijgt ’s nachts meerdere MFA-pushmeldingen zonder zelf in te loggen. In het SOC controleer je loginlogs en locatie/IP, reset je het wachtwoord na identiteitscheck en trek je actieve sessies in. Daarna check je mailbox rules en zet je extra monitoring aan. Alles leg je vast in een ticket als bewijs.
+
+## Careers in Cyber (THM) — kernpunten
+
+**Marktcontext**
+- Wereldwijd zijn er > 3.5 miljoen openstaande cyber security vacatures.
+
+**Rollen (kort)**
+- **Security Analyst (Blue Team / SOC):** helpt de organisatie verdedigen door alerts te onderzoeken, afwijkingen te herkennen en incidenten op te volgen.
+- **Security Engineer:** bouwt en onderhoudt security tooling (bijv. logging, SIEM, IDS/EDR), zodat detectie en response mogelijk zijn.
+- **Penetration Tester (Offensive / Red Team):** test systemen door gecontroleerd zwaktes te vinden en (binnen scope) aan te tonen wat mis kan gaan.
+
+**Belangrijk begrip: Engagement**
+- Een *engagement* is het afgesproken testtraject (scope, regels, doelen) waarbinnen een pentest plaatsvindt.
+
+**Mijn uitkomst / richting**
+- THM resultaat: **Penetration Tester**.
+- Mijn plan: ik leer de basis via THM en vertaal elke module naar praktische artefacts (playbooks/cases) in dit portfolio.
