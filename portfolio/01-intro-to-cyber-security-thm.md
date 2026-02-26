@@ -1,46 +1,36 @@
-# Case 01 — Verdachte MFA prompts (eerste triage)
+# 01 - Intro to Cyber Security (THM)
 
-## Context (wie, wat, waarom) — max 3 regels
-- Gebruiker meldt: “Ik krijg MFA pushmeldingen terwijl ik niet inlog.”
-- Tijdstip: ’s nachts; verwachte locatie gebruiker: NL.
-- Vermoeden: mogelijke credential compromise + **MFA push fatigue** poging.
+## Doel
+Basisbegrippen uit offensive en defensive security begrijpen, en ze kunnen vertalen naar praktische stappen in een organisatie.
 
-## Risico (wat kan er misgaan)
-- Account takeover met toegang tot e-mail en SSO-apps.
-- Persistence via mailbox rules/forwarding of OAuth app-consents.
-- Laterale beweging naar andere systemen als SSO breed gekoppeld is.
+## In normale taal
+Cybersecurity gaat over het voorkomen, ontdekken en oplossen van misbruik van systemen. In **offensive security** probeer je als aanvaller te denken: je zoekt zwakke plekken en misconfiguraties om te zien wat er mis kan gaan. Een voorbeeld is het ontdekken van “verborgen” paden of pagina’s op een website door directory-zoekwerk (bijv. met dirb).  
 
-## Triage verdict (voorlopig)
-- **Verdict:** Suspicious (waarschijnlijk MFA push fatigue / credential compromise)
-- **Severity:** Medium (→ High bij bewijs van mailbox rules/OAuth consent of succesvolle login vanaf afwijkende locatie)
-- **Confidence:** Medium (totdat sign-in logs + device info bevestigd zijn)
+**Defensive security** (blue team) richt zich juist op beschermen en snel reageren: activiteiten monitoren, verdachte signalen herkennen en incidenten afhandelen. Veel organisaties doen dit vanuit een **SOC**, waar analisten meldingen opvolgen en aanvallen onderzoeken. Hiervoor gebruiken ze vaak een **SIEM**, dat logs en alerts verzamelt zodat je sneller afwijkingen ziet.
 
-## Actieplan (stappen)
-1. **Identiteit verifiëren** via alternatieve verificatie (voordat je resets uitvoert).
-2. **Containment (direct):** password reset + **revoke sessions/tokens** + MFA reset/re-enroll.
-3. **Logcheck:** laatste succesvolle logins, failed attempts, IP/geo, device info, “impossible travel”.
-4. **Mailbox/OAuth check:** forwarding, rules, inbox rules, nieuwe OAuth app-consents (indien van toepassing).
-5. **Communicatie:** gebruiker instrueren (nooit “Approve” klikken), korte phishing-checklist.
-6. **Nazorg:** extra monitoring 7 dagen + access review op gevoelige rechten.
+Belangrijke verdedigingsmiddelen zijn training van medewerkers, firewalls, intrusion detection en duidelijke security policies. In de praktijk draait het om vijf kerntaken:
+- monitoren & detecteren  
+- incident response  
+- threat intelligence  
+- vulnerability management  
+- investigation/analysis  
 
-## Benodigde info (wat móet je weten)
-- [ ] Exact tijdstip(s) van MFA prompts + screenshots (indien mogelijk).
-- [ ] Is er (recent) ingelogd op een **nieuw device** of via een onbekende browser?
-- [ ] Heeft gebruiker op links geklikt of credentials ingevuld op een verdachte pagina?
-- [ ] Welke kritieke accounts/apps hangen aan SSO? (impact inschatten)
+## Stappen (praktisch)
+1. Bepaal wat je wil beschermen (accounts, apps, data) en welke logbronnen je nodig hebt.  
+2. Zet monitoring aan: verzamel relevante logs (auth/logins, netwerk, endpoints, apps).  
+3. Gebruik een SIEM om logs te centraliseren en detectieregels/alerts te bouwen.  
+4. Triage alerts: bepaal “false positive vs echte dreiging” met vaste checklist.  
+5. Reageer: account beveiligen/isoleren, oorzaak achterhalen, nazorg & verbeteractie vastleggen.  
 
-## Beslissing (least privilege)
-- Tijdelijk blokkeren of **step-up MFA/conditional access** afdwingen totdat oorzaak duidelijk is.
-- Geen MFA-uitzonderingen; liever zekerheid verhogen (bijv. number matching / phishing-resistant MFA waar mogelijk).
+## Checks / bewijs
+- Overzicht van logbronnen + retention (hoe lang bewaar je logs).  
+- Voorbeeld van SIEM-alert + opvolging in een ticket (tijdlijn, acties, conclusie).  
+- Policy die MFA/least privilege verplicht stelt + bewijs dat dit actief is.  
 
-## Bewijs (wat sla je op)
-- Export/screenshot van sign-in events + MFA events.
-- Ticketlog met acties (password reset, sessions revoked, MFA reset) + communicatie met gebruiker/manager.
-- Resultaat mailbox/OAuth checks (rules/forwarding/consents).
+## Veelgemaakte fouten
+- Monitoring aanzetten zonder duidelijke “wat doen we bij een alert?” playbook.  
+- Te veel alerts (noise) waardoor echte signalen worden gemist.  
+- Uitzonderingen (bijv. MFA uit) zonder einddatum/approval en zonder logging.  
 
-### Voorbeeld (fictief) indicatoren die escalatie triggeren
-- Succesvolle login vanaf afwijkende geo + 10+ MFA prompts in minuten + nieuw device → escaleren naar (mogelijk) confirmed compromise.
-
-## Nazorg (review/follow-up)
-- Follow-up na 48 uur en na 7 dagen: nog prompts/verdachte activiteit?
-- Overweeg awareness: korte training of phishing-simulatie aanbevelen.
+## Mini-voorbeeld
+Een medewerker krijgt ’s nachts meerdere MFA-pushmeldingen zonder zelf in te loggen. In het SOC controleer je loginlogs en locatie/IP, reset je het wachtwoord na identiteitscheck en trek je actieve sessies in. Daarna check je mailbox rules en zet je extra monitoring aan. Alles leg je vast in een ticket als bewijs.
